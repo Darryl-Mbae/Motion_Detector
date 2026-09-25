@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "author": "Darryl Mbae",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 9.6, "left": -52.76, "attrs": {} },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 236.4,
+      "left": -15.4,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 311.15,
+      "left": -86.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 275,
+      "left": -86.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 240,
+      "left": -86.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 246,
+      "left": 147.8,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 349.55,
+      "left": -86.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn2",
+      "top": 247.4,
+      "left": -134.4,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 42.4, "left": 127.02, "attrs": {} },
+    {
+      "type": "wokwi-vcc",
+      "id": "vcc1",
+      "top": -13.160488176908288,
+      "left": -262.79030608551017,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "esp:13", "r1:1", "red", [] ],
+    [ "r1:2", "rgb1:R", "red", [] ],
+
+    [ "esp:25", "r3:1", "green", [] ],
+    [ "r3:2", "rgb1:G", "green", [] ],
+
+    [ "esp:26", "r4:1", "blue", [] ],
+    [ "r4:2", "rgb1:B", "blue", [] ],
+
+    [ "rgb1:COM", "esp:GND.2", "black", [ "v19.2", "h77.2", "v-259.2" ] ],
+
+    [ "r2:2", "led2:A", "orange", [] ],
+    [ "btn2:2.r", "esp:GND.1", "black", [] ],
+    [ "btn2:1.r", "esp:12", "green", [ "v0", "h39.2", "v-96" ] ],
+    [ "esp:27", "r2:1", "orange", [ "h-105.45", "v230.4", "h-38.4" ] ],
+    [ "esp:GND.2", "led2:C", "black", [ "v19.2", "h19.2", "v230.4" ] ],
+    [ "pir1:VCC", "esp:3V3", "red", [ "v0", "h-38.4", "v-153.6", "h-201.6", "v57.6" ] ],
+    [ "pir1:GND", "esp:GND.2", "black", [ "v48", "h-86.66", "v-144" ] ],
+    [ "pir1:OUT", "esp:14", "green", [ "v38.4", "h67.06", "v-182.4", "h-307.2", "v144" ] ]
+  ],
+  "dependencies": {}
+}
